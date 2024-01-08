@@ -33,7 +33,7 @@ class ChiTietDonHangController extends Controller
                 $cart[$productId] = [
                     'productName' => $productName,
                     'productPrice' => $productPrice,
-                    'pquantity' => 1 // Mặc định số lượng là 1 khi sản phẩm được thêm vào lần đầu
+                    'pquantity' => 1 
                 ];
             } else {
                 $cart[$productId]['pquantity']++;
@@ -147,7 +147,9 @@ class ChiTietDonHangController extends Controller
         }
 
  
-        return redirect()->back()->with('message', 'Cập nhật thông tin thành công');
+        return response()->json(['message' => 'Cập nhật thông tin thành công']);
+
+
     }
 
     public function getSizesForProduct($productId)
@@ -157,7 +159,8 @@ class ChiTietDonHangController extends Controller
         ->where('ChiTietKichThuocSanPham.SoLuong', '>', 0)
         ->pluck('KichThuocSanPham.TenKichThuoc');
         //phương thức pluck được dùng để lấy ra 1 mảng tên kích thước
-    return $sizes;
+        
+        return $sizes;
     }
 
 
